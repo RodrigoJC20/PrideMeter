@@ -38,6 +38,23 @@ document.addEventListener('DOMContentLoaded', function() {
     loginButton.addEventListener('click', async function() {
         console.log("Hola, si srive el boton :D")
 
+        //login
+        const username = 'yohn';
+        const password = '1234';
+
+        await loginUser(username, password)
+            .then(() => {
+                console.log("Usuario registrado");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        showHomePage();
+    });
+
+    section1Button.addEventListener('click', async function() {
+        //register 
         const username = 'yohn';
         const password = '1234';
 
@@ -48,12 +65,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch((error) => {
                 console.log(error);
             });
-        
 
-        showHomePage();
-    });
-
-    section1Button.addEventListener('click', function() {
         showSection1();
     });
 
