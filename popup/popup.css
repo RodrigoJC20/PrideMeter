@@ -1,0 +1,59 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+}
+
+body {
+    width: 400px;
+    height: 300px;
+    margin: 0; /* Add this line to remove the default margin */
+}
+
+.header {
+    text-align: center;
+    background-color: rgb(219, 118, 219);
+    padding: 10px;
+}
+
+#main-content {
+    padding: 10px;
+}
+
+#login-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    height: 200px;
+}
+
+.welcome {
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+#login-button {
+    display: block;
+    margin: 10px auto;
+    padding: 10px 20px;
+    background-color: rgb(70, 169, 235);
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#login-button:hover {
+    background-color: rgb(65, 159, 223);
+}
+
+#section1,
+#section2,
+#section3 {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+}

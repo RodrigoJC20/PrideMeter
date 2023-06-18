@@ -1,0 +1,31 @@
+{
+    "manifest_version": 3,
+    "name": "Pride Hacks",
+    "description": "Pride hacks extension",
+    "version": "1.0",
+    "permissions": ["storage", "tabs", "identify"],
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [
+        {
+            "matches": [
+                "https://www.twitter.com/*"
+            ],
+            "js": [
+                "scripts/content.js"
+            ],
+            "run_at": "document_start"
+        }
+    ],
+    "icons": {
+        "16": "images/prideicon.png",
+        "32": "images/prideicon.png",
+        "48": "images/prideicon.png",
+        "128": "images/prideicon.png"
+    },
+    "action": {
+        "default_popup": "popup/popup.html",
+        "default_icon": "images/prideicon.png"
+    }
+}
