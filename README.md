@@ -5,7 +5,9 @@ The Pride Meter Chrome Extension is a tool that rates Twitter users based on the
 ## Arquitecture
 For this project, we made use os MongoDB Atlas and Azure Serverless functions. Our functions focused on managing the authenticaton flow, implementing the necessary logic to display the information, and storing it the way we needed it. We used mongodb to save our users information and the reviews. For this, we made use of two collections; a users collection which contained each application username and password, and a ratings collection, which contained each rating and comment given to a twitter user. 
 
-You can inspect the azure functions in the serverlessFunctions folder. 
+You can inspect the azure functions in the serverlessFunctions folder.
+
+Our extension client is made using HTML, CSS, and raw Javascript, since that is the recommended way to build extensions by some sources. 
 
 ## Installation
 
