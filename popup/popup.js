@@ -91,7 +91,21 @@ document.addEventListener('DOMContentLoaded', async function() {
         showSignIn()
     })
 
-    signUpTag.addEventListener('click', (event) => {
+    signUpTag.addEventListener('click', async (event) => {
+        ratedUser = "RodrigoJC20";
+        rating = 99;
+        ratedBy = "Mikel";
+        comment = "He is pretty cool and trustworthy";
+
+        await submitReview(ratedUser, rating, ratedBy, comment)
+            .then(() => {
+                console.log("Review Subida");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        
+
         event.preventDefault()
         showSignUp()
     })
