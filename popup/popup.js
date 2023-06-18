@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
     const loginPage = document.getElementById('login-page');
     const homePage = document.getElementById('home-page');
+    const ratingPage = document.getElementById('rating-page');
     const navBar = document.getElementById('nav-bar');
     const signInTag = document.getElementById('btnToSignIn');
     const signUpTag = document.getElementById('btnToSignUp');
@@ -12,6 +13,8 @@ document.addEventListener('DOMContentLoaded', async function() {
     const btnSignIn = document.getElementById('subSignInBtn');
     const btnSignUp = document.getElementById('subSignUpBtn');
     const btnSubmit = document.getElementById('submit-review');
+    const commentDiv1 = document.getElementById('comment1');
+    const commentDiv2 = document.getElementById('comment2');
 
     function showHomePage() {
         loginPage.style.display = 'none';
@@ -27,6 +30,24 @@ document.addEventListener('DOMContentLoaded', async function() {
         formSignIn.style.display = 'none';
         formSignUp.style.display = 'block';
     }
+
+    const showRating = async (ratedUser) => {
+        loginPage.style.display = 'none';
+        homePage.style.display = 'none';
+        ratingPage.style.display = 'block';
+
+        const name = document.getElementById('current-user2');
+        const rating = document.getElementById('user-rating')
+
+        const rate = await getUserRating(ratedUser)
+
+        const comments = await getUserComments(ratedUser)
+
+        name.innerHTML = ratedUser;
+        rating.innerHTML = rate[0].average.toFixed(2)
+        commentDiv1.innerHTML = comments[0].comment
+        commentDiv2.innerHTML = comments[1].comment
+    }
     
     btnSignIn.addEventListener('click', async (event) => {
         event.preventDefault()
@@ -39,6 +60,7 @@ document.addEventListener('DOMContentLoaded', async function() {
 
         await loginUser(username, password)
             .then(async (response) => {
+                userSession = username
                 await chrome.storage.sync.set({ user: username });
             })
             .catch((error) => {
@@ -48,7 +70,8 @@ document.addEventListener('DOMContentLoaded', async function() {
         showHomePage()
     })
 
-    btnSignUp.addEventListener('click', async () => {
+    btnSignUp.addEventListener('click', async (event) => {
+        event.preventDefault()
 
         const usernameInput = document.getElementById('signup-name');
         const passwordInput = document.getElementById('signup-password');
@@ -59,6 +82,7 @@ document.addEventListener('DOMContentLoaded', async function() {
         await registerUser(username, password)
             .then(async (response) => {
                 await chrome.storage.sync.set({ user: username });
+                userSession = username
             })
             .catch((error) => {
                 console.log(error);
@@ -68,22 +92,23 @@ document.addEventListener('DOMContentLoaded', async function() {
     });
 
     btnSubmit.addEventListener('click', async () => {
-        const data = await chrome.storage.sync.get(["user"]);
-
-        console.log(data)
+        const ratedBy = userSession;
 
         const reviewInput = document.getElementById('review');
         const rateInput = document.getElementById('rate-num');
-        const rate = rateInput.value;
+        const rate = parseInt(rateInput.value);
         const review = reviewInput.value;
+        const ratedUser = document.getElementById('current-user').innerHTML;
 
-        // await submitReview(username, review)
-        //     .then((response) => {
-        //         console.log(response);
-        //     })
-        //     .catch((error) => {
-        //         console.log(error);
-        //     });
+        console.log(ratedUser, rate, ratedBy, review)
+
+        await submitReview(ratedUser, rate, ratedBy, review)
+            .then(async (response) => {
+                await showRating(ratedUser)
+            })
+            .catch((error) => {
+                console.log(error);
+            });
     })
 
     signInTag.addEventListener('click', (event) => {
@@ -91,25 +116,14 @@ document.addEventListener('DOMContentLoaded', async function() {
         showSignIn()
     })
 
-    signUpTag.addEventListener('click', async (event) => {
-        ratedUser = "RodrigoJC20";
-        rating = 99;
-        ratedBy = "Mikel";
-        comment = "He is pretty cool and trustworthy";
-
-        await submitReview(ratedUser, rating, ratedBy, comment)
-            .then(() => {
-                console.log("Review Subida");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        
-
+    signUpTag.addEventListener('click', (event) => {
         event.preventDefault()
         showSignUp()
     })
 });
+
+let userSession
+let accessToken
 
 const getCurrentTab = async () => {
     const activeTab = await getActiveTabURL();

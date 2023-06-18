@@ -169,7 +169,46 @@ h2 {
     color: rgb(181, 181, 181);
 }
 
+#rating-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
 
+.rating-page:h2 {
+    margin-bottom: 10px;
+}
+
+#current-user2 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.user-rating {
+    font-size: 18px;
+    margin-bottom: 20px;
+}
+
+.comments {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.user-comments {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.user-comment {
+    background-color: #222;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+    width: 100%;
+}
 /* ---------- */
 
 #imgProfile {

@@ -3,7 +3,7 @@ async function submitReview(ratedUser, rating, ratedBy, comment) {
   
     try {
       const response = await fetch(url);
-      // Handle the response
+      return response
     } catch (error) {
       // Handle error
     }

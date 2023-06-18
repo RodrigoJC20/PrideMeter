@@ -14,7 +14,7 @@
     </header>
     <main id="main-content">
         <div id="login-page">
-            <div class="welcome">Welcome to Pride Hacks!</div>
+            <div class="welcome">Welcome to Pride Meter!</div>
             <section id="formSignUp" class="formSignUp">
                 <h2>Sign Up</h2>
                 <form action="/" method="POST" class="formSession">
@@ -42,13 +42,6 @@
             </section>
         </div>
         <div id="home-page" style="display: none;">
-            
-            <div class="user-rating"></div>
-            <div class="user-comments">
-                <div class="user-comment-1"></div>
-                <div class="user-comment-2"></div>
-                <div class="user-comment-3"></div>
-            </div>
             <div class="write-review">
                 <h3>Write a review for</h3>
                 <h2 id="current-user"></h2>
@@ -58,10 +51,22 @@
                 <button id="submit-review">Submit</button>
             </div>
         </div>
+        <div id="rating-page" style="display: none;">
+            <h2>Ratings for</h2>
+            <h2 id="current-user2"></h2>
+            <div id="user-rating" class="user-rating" style="text-align: center;"></div>
+            <h1 class="comments">Comments</h1>
+            <div class="user-comments">
+                <div id="comment1" class="user-comment"></div>
+                <div id="comment2" class="user-comment"></div>
+            </div>
+        </div>
     </main>
     <script src="../scripts/loginUser.js"></script>
     <script src="../scripts/registerUser.js"></script>
     <script src="../scripts/submitReview.js"></script>
+    <script src="../scripts/getUserRating.js"></script>
+    <script src="../scripts/getUserComments.js"></script>
     <script src="popup.js"></script>
 </body> 
 </html>
