@@ -47,7 +47,21 @@ document.addEventListener('DOMContentLoaded', function() {
         formSignUp.style.display = 'block';
     }
 
-    section1Button.addEventListener('click', function() {
+    section1Button.addEventListener('click', async function() {
+        
+        ratedUser = "RodrigoJC20";
+        rating = 99;
+        ratedBy = "Mikel";
+        comment = "He is pretty cool and trustworthy";
+
+        await submitReview(ratedUser, rating, ratedBy, comment)
+            .then(() => {
+                console.log("Review Subida");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        
         showSection1();
     });
 
@@ -64,7 +78,21 @@ document.addEventListener('DOMContentLoaded', function() {
         showSignIn()
     })
 
-    signUpTag.addEventListener('click', (event) => {
+    signUpTag.addEventListener('click', async (event) => {
+        ratedUser = "RodrigoJC20";
+        rating = 99;
+        ratedBy = "Mikel";
+        comment = "He is pretty cool and trustworthy";
+
+        await submitReview(ratedUser, rating, ratedBy, comment)
+            .then(() => {
+                console.log("Review Subida");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        
+
         event.preventDefault()
         showSignUp()
     })
