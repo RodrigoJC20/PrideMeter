@@ -22,7 +22,7 @@
                     <br>
                     <input type="password" id="signup-password" class="inp" name="signup-password" placeholder="Password" required>
                     <br>
-                    <input type="submit" id="subBtn" value="Sign Up">
+                    <input type="submit" id="subSignUpBtn" value="Sign Up">
                 </form>
     
                 <a href="" id="btnToSignIn" class="btn2">Sign In</a>
@@ -31,35 +31,34 @@
             <section id="formSignIn" class="formSignIn" style="display: none;">
                 <h2>Log In</h2>
                 <form action="/" method="POST" class="formSession">
-                    <input type="text" id="signup-email" class="inp" name="signup-email" placeholder="Username" required>
+                    <input type="text" id="signin-name" class="inp" name="signin-name" placeholder="Username" required>
                     <br>
-                    <input type="password" id="signup-password" class="inp" name="signup-password" placeholder="Password" required>
+                    <input type="password" id="signin-password" class="inp" name="signin-password" placeholder="Password" required>
                     <br>
-                    <input type="submit" id="subBtn" value="Sign In">
+                    <input type="submit" id="subSignInBtn" value="Sign In">
                 </form>
     
                 <a href="" id="btnToSignUp" class="btn2">Sign Up</a>
             </section>
         </div>
         <div id="home-page" style="display: none;">
-            <h3>Home Page</h3>
             
-            <div id="section1" style="display: none;">
-                Section 1
+            <div class="user-rating"></div>
+            <div class="user-comments">
+                <div class="user-comment-1"></div>
+                <div class="user-comment-2"></div>
+                <div class="user-comment-3"></div>
             </div>
-            <div id="section2" style="display: none;">
-                Section 2
-            </div>
-            <div id="section3" style="display: none;">
-                Section 3
+            <div class="write-review">
+                <h3>Write a review for</h3>
+                <h2 id="current-user"></h2>
+                <input type="number" name="rate-num" id="rate-num">
+                <textarea name="review" id="review" cols="30" rows="5" placeholder="Write a review"></textarea>
+                <br>
+                <button id="submit-review">Submit</button>
             </div>
         </div>
     </main>
-    <nav id="nav-bar" style="display: none;">
-        <button id="section1-button">Section 1</button>
-        <button id="section2-button">Section 2</button>
-        <button id="section3-button">Section 3</button>
-    </nav>
     <script src="../scripts/loginUser.js"></script>
     <script src="../scripts/registerUser.js"></script>
     <script src="popup.js"></script>

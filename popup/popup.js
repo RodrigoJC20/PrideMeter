@@ -1,40 +1,21 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', async function() {
+
+    await getCurrentTab()
+
     const loginPage = document.getElementById('login-page');
     const homePage = document.getElementById('home-page');
-    const section1Button = document.getElementById('section1-button');
-    const section2Button = document.getElementById('section2-button');
-    const section3Button = document.getElementById('section3-button');
-    const section1 = document.getElementById('section1');
-    const section2 = document.getElementById('section2');
-    const section3 = document.getElementById('section3');
     const navBar = document.getElementById('nav-bar');
     const signInTag = document.getElementById('btnToSignIn');
     const signUpTag = document.getElementById('btnToSignUp');
     const formSignIn = document.getElementById('formSignIn');
     const formSignUp = document.getElementById('formSignUp');
+    const btnSignIn = document.getElementById('subSignInBtn');
+    const btnSignUp = document.getElementById('subSignUpBtn');
+    const btnSubmit = document.getElementById('submit-review');
 
     function showHomePage() {
         loginPage.style.display = 'none';
         homePage.style.display = 'block';
-        navBar.style.display = 'block';
-    }
-
-    function showSection1() {
-        section3.style.display = 'none';
-        section2.style.display = 'none';
-        section1.style.display = 'block';
-    }
-
-    function showSection2() {
-        section1.style.display = 'none';
-        section3.style.display = 'none';
-        section2.style.display = 'block';
-    }
-
-    function showSection3() {
-        section1.style.display = 'none';
-        section2.style.display = 'none';
-        section3.style.display = 'block';
     }
 
     const showSignIn = () => {
@@ -46,18 +27,64 @@ document.addEventListener('DOMContentLoaded', function() {
         formSignIn.style.display = 'none';
         formSignUp.style.display = 'block';
     }
+    
+    btnSignIn.addEventListener('click', async (event) => {
+        event.preventDefault()
 
-    section1Button.addEventListener('click', function() {
-        showSection1();
+        const usernameInput = document.getElementById('signin-name');
+        const passwordInput = document.getElementById('signin-password');
+
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        await loginUser(username, password)
+            .then(async (response) => {
+                await chrome.storage.sync.set({ user: username });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+
+        showHomePage()
+    })
+
+    btnSignUp.addEventListener('click', async () => {
+
+        const usernameInput = document.getElementById('signup-name');
+        const passwordInput = document.getElementById('signup-password');
+    
+        const username = usernameInput.value;
+        const password = passwordInput.value;
+
+        await registerUser(username, password)
+            .then(async (response) => {
+                await chrome.storage.sync.set({ user: username });
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    
+        showHomePage();
     });
 
-    section2Button.addEventListener('click', function() {
-        showSection2();
-    });
+    btnSubmit.addEventListener('click', async () => {
+        const data = await chrome.storage.sync.get(["user"]);
 
-    section3Button.addEventListener('click', function() {
-        showSection3();
-    });
+        console.log(data)
+
+        const reviewInput = document.getElementById('review');
+        const rateInput = document.getElementById('rate-num');
+        const rate = rateInput.value;
+        const review = reviewInput.value;
+
+        // await submitReview(username, review)
+        //     .then((response) => {
+        //         console.log(response);
+        //     })
+        //     .catch((error) => {
+        //         console.log(error);
+        //     });
+    })
 
     signInTag.addEventListener('click', (event) => {
         event.preventDefault()
@@ -69,3 +96,29 @@ document.addEventListener('DOMContentLoaded', function() {
         showSignUp()
     })
 });
+
+const getCurrentTab = async () => {
+    const activeTab = await getActiveTabURL();
+    const url = activeTab.url.split("/");
+    const activeUser = url[url.length - 1];
+
+    
+
+    if (activeTab.url.includes("twitter.com/") && activeUser != "home") {
+        const user = document.getElementById('current-user');
+        user.innerHTML = activeUser;
+    } else {
+        const container = document.getElementById("main-content");
+    
+        container.innerHTML = '<div class="title">This is not a twitter profile.</div>';
+    }
+}
+
+async function getActiveTabURL() {
+    const tabs = await chrome.tabs.query({
+        currentWindow: true,
+        active: true
+    });
+
+    return tabs[0];
+}

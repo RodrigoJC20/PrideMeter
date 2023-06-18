@@ -3,11 +3,12 @@ async function registerUser(username, password) {
   
     try {
       const response = await fetch(url);
+      return response
       // Handle the response
     } catch (error) {
       // Handle error
     }
-  }
+}
   
-  window.registerUser = registerUser;
+window.registerUser = registerUser;
   
