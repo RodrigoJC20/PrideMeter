@@ -3,7 +3,7 @@
     "name": "Pride Hacks",
     "description": "Pride hacks extension",
     "version": "1.0",
-    "permissions": ["storage", "tabs", "identify"],
+    "permissions": ["storage", "tabs"],
     "background": {
         "service_worker": "background.js"
     },

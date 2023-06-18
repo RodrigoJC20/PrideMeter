@@ -8,6 +8,10 @@ document.addEventListener('DOMContentLoaded', function() {
     const section2 = document.getElementById('section2');
     const section3 = document.getElementById('section3');
     const navBar = document.getElementById('nav-bar');
+    const signInTag = document.getElementById('btnToSignIn');
+    const signUpTag = document.getElementById('btnToSignUp');
+    const formSignIn = document.getElementById('formSignIn');
+    const formSignUp = document.getElementById('formSignUp');
 
     function showHomePage() {
         loginPage.style.display = 'none';
@@ -33,25 +37,15 @@ document.addEventListener('DOMContentLoaded', function() {
         section3.style.display = 'block';
     }
 
-    const loginButton = document.getElementById('login-button');
+    const showSignIn = () => {
+        formSignIn.style.display = 'block';
+        formSignUp.style.display = 'none';
+    }
 
-    loginButton.addEventListener('click', async function() {
-        console.log("Hola, si srive el boton :D")
-
-        const username = 'yohn';
-        const password = '1234';
-
-        await registerUser(username, password)
-            .then(() => {
-                console.log("Usuario registrado");
-            })
-            .catch((error) => {
-                console.log(error);
-            });
-        
-
-        showHomePage();
-    });
+    const showSignUp = () => {
+        formSignIn.style.display = 'none';
+        formSignUp.style.display = 'block';
+    }
 
     section1Button.addEventListener('click', function() {
         showSection1();
@@ -64,4 +58,14 @@ document.addEventListener('DOMContentLoaded', function() {
     section3Button.addEventListener('click', function() {
         showSection3();
     });
+
+    signInTag.addEventListener('click', (event) => {
+        event.preventDefault()
+        showSignIn()
+    })
+
+    signUpTag.addEventListener('click', (event) => {
+        event.preventDefault()
+        showSignUp()
+    })
 });

@@ -8,14 +8,38 @@
     <title>Pride Hacks</title>
 </head>
 <body>
-    <header class="header">
-        <h1>Pride Hacks</h1>
+    <header class="header-app">
+        <img src="../images/logo.png" alt="logo" class="logo-top">
+        <span id="close-button">Pride Meter</span>
     </header>
     <main id="main-content">
         <div id="login-page">
-            <div class="welcome">Welcome to Pride Hacks! Login with your Twitter account to start</div>
-            <!-- Login page content here -->
-            <button id="login-button">Login with Twitter</button>
+            <div class="welcome">Welcome to Pride Hacks!</div>
+            <section id="formSignUp" class="formSignUp">
+                <h2>Sign Up</h2>
+                <form action="/" method="POST" class="formSession">
+                    <input type="text" id="signup-name" class="inp" name="signup-name" placeholder="Username" required>
+                    <br>
+                    <input type="password" id="signup-password" class="inp" name="signup-password" placeholder="Password" required>
+                    <br>
+                    <input type="submit" id="subBtn" value="Sign Up">
+                </form>
+    
+                <a href="" id="btnToSignIn" class="btn2">Sign In</a>
+    
+            </section>
+            <section id="formSignIn" class="formSignIn" style="display: none;">
+                <h2>Log In</h2>
+                <form action="/" method="POST" class="formSession">
+                    <input type="text" id="signup-email" class="inp" name="signup-email" placeholder="Username" required>
+                    <br>
+                    <input type="password" id="signup-password" class="inp" name="signup-password" placeholder="Password" required>
+                    <br>
+                    <input type="submit" id="subBtn" value="Sign In">
+                </form>
+    
+                <a href="" id="btnToSignUp" class="btn2">Sign Up</a>
+            </section>
         </div>
         <div id="home-page" style="display: none;">
             <h3>Home Page</h3>
