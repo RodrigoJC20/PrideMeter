@@ -1,7 +1,7 @@
 const {MongoClient} = require("mongodb");
 
 async function main() {
-    const url = "mongodb+srv://admin:Uww3r4vc1VlACioKwyPj@extensiontestdb.5awe98m.mongodb.net/?retryWrites=true&w=majority";
+    const url = "";
 
     const dbName = "extensionTestDB";
 
