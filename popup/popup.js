@@ -41,7 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const username = 'yohn';
         const password = '1234';
 
-        registerUser(username, password)
+        await registerUser(username, password)
             .then(() => {
                 console.log("Usuario registrado");
             })
