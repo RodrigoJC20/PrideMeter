@@ -35,17 +35,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const loginButton = document.getElementById('login-button');
 
-    // async function getUserInfo() {
-    //     const response = await fetch('https://extensionpracticefunc.azurewebsites.net/.auth/me')
-            
-    //     const payload = await response.json();
-    //     const { clientPrincipal } = payload;
-    //     return clientPrincipal;
-    // }
-
     loginButton.addEventListener('click', async function() {
-        // console.log(await getUserInfo())
         console.log("Hola, si srive el boton :D")
+
+        const username = 'yohn';
+        const password = '1234';
+
+        await registerUser(username, password)
+            .then(() => {
+                console.log("Usuario registrado");
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+        
 
         showHomePage();
     });
